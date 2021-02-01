@@ -69,10 +69,15 @@ export class TaskService {
   }
 
   resetTask(){
-    let newList = this.todos = this.started = this.completed = [];
-    localStorage.setItem("todos", JSON.stringify(this.todos));
-    localStorage.setItem("started", JSON.stringify(this.todos));
-    localStorage.setItem("completed", JSON.stringify(this.todos));
-    return newList
+    let confirmation = confirm("Do you really want to clear this board?");
+    if(!confirmation){
+      return
+    }else{
+      let newList = this.todos = this.started = this.completed = [];
+      localStorage.setItem("todos", JSON.stringify(this.todos));
+      localStorage.setItem("started", JSON.stringify(this.todos));
+      localStorage.setItem("completed", JSON.stringify(this.todos));
+      return newList
+    }
   }
 }

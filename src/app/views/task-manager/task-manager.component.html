@@ -1,9 +1,10 @@
 <div class="container py-5">
-    <h1 class="text-center">Task Manager</h1>
+    <h1 class="text-center">Project Management</h1>
     <div class="row">
         <div class="col-12">            
-            <span class="float-right">
-                <button mat-raised-button color="accent" class="my-3" (click)="handleReset()">Clear Panel</button>
+            <span class="float-right mb-3">
+                <button mat-button color="accent" (click)="handleSaveProgress()">Save Progress</button>
+                <button mat-raised-button color="warn" (click)="handleReset()">Clear Panel</button>
             </span>
         </div>
     </div>
@@ -12,7 +13,7 @@
             <div class="bg-info py-2 mb-md-0 mb-2" cdkDropList #todoList="cdkDropList" [cdkDropListData]="todos"
                 [cdkDropListConnectedTo]="[startList]" (cdkDropListDropped)="onDrop($event)">
                 <h2 class="text-center text-white my-2">Tasks</h2>
-                <mat-list class="task-list" role="list" *ngFor="let todo of todos" cdkDrag>
+                <mat-list class="cursor-pointer" role="list" *ngFor="let todo of todos" cdkDrag>
                     <mat-list-item role="listitem" class="mb-2">
                         <mat-card class="w-100">{{todo.title}}</mat-card>
                     </mat-list-item>
@@ -27,7 +28,7 @@
             <div class="bg-warning py-2 mb-md-0 mb-2" cdkDropList #startList="cdkDropList" [cdkDropListData]="started"
                 [cdkDropListConnectedTo]="[completeList]" (cdkDropListDropped)="onDrop($event)">
                 <h2 class="text-center text-white my-2">Started</h2>
-                <mat-list class="task-list" role="list" *ngFor="let start of started" cdkDrag>
+                <mat-list class="cursor-pointer" role="list" *ngFor="let start of started" cdkDrag>
                     <mat-list-item role="listitem" class="mb-2">
                         <mat-card class="w-100">{{start.title}}</mat-card>
                     </mat-list-item>
@@ -42,7 +43,7 @@
                 [cdkDropListData]="completed" [cdkDropListConnectedTo]="[todoList]"
                 (cdkDropListDropped)="onDrop($event)">
                 <h2 class="text-center text-white my-2">Completed</h2>
-                <mat-list class="task-list" role="list" *ngFor="let complete of completed" cdkDrag>
+                <mat-list class="cursor-pointer" role="list" *ngFor="let complete of completed" cdkDrag>
                     <mat-list-item role="listitem" class="mb-2">
                         <mat-card class="w-100">{{complete.title}}</mat-card>
                     </mat-list-item>
@@ -54,11 +55,11 @@
         </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col">
             <button mat-button color="accent" class="my-3" (click)="handleSaveProgress()">Save Progress</button>
         </div>
-    </div>
+    </div> -->
 
     <div class="row">
         <div class="col">

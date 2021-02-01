@@ -14,6 +14,7 @@ export class TaskManagerComponent implements OnInit {
   completed: TaskPlan[] = [];
   @ViewChild('title') title:ElementRef | any;
   @ViewChild('description') description:ElementRef | any;
+  
   constructor(private _taskSvc: TaskService) { }
 
   ngOnInit(): void {
@@ -29,6 +30,7 @@ export class TaskManagerComponent implements OnInit {
       }else{
         transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
       }
+
   }
 
   handleSaveProgress(){
@@ -36,7 +38,6 @@ export class TaskManagerComponent implements OnInit {
   }
   
   handleAddTask(e:any){
-    e.preventDefault();
     const _id = new Date().getTime().toString();
     const title = this.title?.nativeElement?.value;
     const description = this.description?.nativeElement.value
@@ -51,6 +52,7 @@ export class TaskManagerComponent implements OnInit {
     
     this.title.nativeElement.value = ""
     this.description.nativeElement.value = ""
+    e.preventDefault();
   }
   handleReset(){
     this._taskSvc.resetTask();
