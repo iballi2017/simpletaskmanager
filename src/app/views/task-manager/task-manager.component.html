@@ -1,21 +1,25 @@
 <div class="container py-5">
     <h1 class="text-center">Project Management</h1>
     <div class="row">
-        <div class="col-12">            
+        <div class="col-12">
             <span class="float-right mb-3">
                 <button mat-button color="accent" (click)="handleSaveProgress()">Save Progress</button>
                 <button mat-raised-button color="warn" (click)="handleReset()">Clear Panel</button>
             </span>
         </div>
     </div>
-    <div class="row">
+    <div class="row" cdkDropListGroup>
         <div class="col-md-4">
             <div class="bg-info py-2 mb-md-0 mb-2" cdkDropList #todoList="cdkDropList" [cdkDropListData]="todos"
                 [cdkDropListConnectedTo]="[startList]" (cdkDropListDropped)="onDrop($event)">
                 <h2 class="text-center text-white my-2">Tasks</h2>
-                <mat-list class="cursor-pointer" role="list" *ngFor="let todo of todos" cdkDrag>
+                <mat-list class="cursor-pointer" role="list" *ngFor="let todo of todos" cdkDragData="todo" cdkDrag>
                     <mat-list-item role="listitem" class="mb-2">
-                        <mat-card class="w-100">{{todo.title}}</mat-card>
+                        <mat-card class="w-100">
+                            <div>{{todo.title}}</div>
+                            <mat-icon class="example-icon float-right text-info" aria-hidden="false"
+                                aria-label="Example delete icon" (click)="handleRemoveItem(todo.id)">delete</mat-icon>
+                        </mat-card>
                     </mat-list-item>
                 </mat-list>
                 <div class="w-75 mx-auto" *ngIf="!todos.length">
@@ -28,9 +32,14 @@
             <div class="bg-warning py-2 mb-md-0 mb-2" cdkDropList #startList="cdkDropList" [cdkDropListData]="started"
                 [cdkDropListConnectedTo]="[completeList]" (cdkDropListDropped)="onDrop($event)">
                 <h2 class="text-center text-white my-2">Started</h2>
-                <mat-list class="cursor-pointer" role="list" *ngFor="let start of started" cdkDrag>
+                <mat-list class="cursor-pointer" role="list" *ngFor="let start of started" cdkDragData="start" cdkDrag>
                     <mat-list-item role="listitem" class="mb-2">
-                        <mat-card class="w-100">{{start.title}}</mat-card>
+                        <mat-card class="w-100">
+                            <div>{{start.title}}
+                                <mat-icon class="example-icon float-right text-warning" aria-hidden="false"
+                                    aria-label="Example delete icon" (click)="handleRemoveStartedItem(start.id)">delete</mat-icon>
+                            </div>
+                        </mat-card>
                     </mat-list-item>
                 </mat-list>
                 <div class="w-75 mx-auto" *ngIf="!started.length && todos.length">
@@ -43,9 +52,14 @@
                 [cdkDropListData]="completed" [cdkDropListConnectedTo]="[todoList]"
                 (cdkDropListDropped)="onDrop($event)">
                 <h2 class="text-center text-white my-2">Completed</h2>
-                <mat-list class="cursor-pointer" role="list" *ngFor="let complete of completed" cdkDrag>
+                <mat-list class="cursor-pointer" role="list" *ngFor="let complete of completed" cdkDragData="complete" cdkDrag>
                     <mat-list-item role="listitem" class="mb-2">
-                        <mat-card class="w-100">{{complete.title}}</mat-card>
+                        <mat-card class="w-100">
+                            <div>{{complete.title}}
+                                <mat-icon class="example-icon float-right text-success" aria-hidden="false"
+                                    aria-label="Example delete icon" (click)="handleRemoveCompletedItem(complete.id)">delete</mat-icon>
+                            </div>
+                        </mat-card>
                     </mat-list-item>
                 </mat-list>
                 <div class="w-75 mx-auto" *ngIf="!completed.length && todos.length || started.length">
@@ -68,16 +82,17 @@
                 <h3>Add Your Task</h3>
                 <form class="example-form">
                     <mat-form-field class="example-full-width">
-                      <mat-label>Title</mat-label>
-                      <input matInput name="description" #title>
+                        <mat-label>Title</mat-label>
+                        <input matInput name="description" #title>
                     </mat-form-field>
-                  
+
                     <mat-form-field class="example-full-width">
-                      <mat-label>Description</mat-label>
-                      <textarea matInput name="description" #description></textarea>
+                        <mat-label>Description</mat-label>
+                        <textarea matInput name="description" #description></textarea>
                     </mat-form-field>
-                    <button mat-raised-button color="accent" class="my-3" (click)="handleAddTask($event)">Add Task To List</button>
-                  </form>
+                    <button mat-raised-button color="accent" class="my-3" (click)="handleAddTask($event)">Add Task To
+                        List</button>
+                </form>
             </mat-card>
         </div>
     </div>

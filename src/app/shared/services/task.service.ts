@@ -68,6 +68,40 @@ export class TaskService {
       return newList
   }
 
+  removeTaskFromTodo(id:string){
+    let confirmation = confirm("Do you really want to delete this item ?");
+    if(!confirmation){
+      return
+    }else{
+    let newList = this.todos.filter((item:any) => item.id != id);
+    this.todos = newList;
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+    return this.todos;
+    }
+  }
+  removeTaskFromStarted(id:string){
+    let confirmation = confirm("Do you really want to delete this item ?");
+    if(!confirmation){
+      return
+    }else{
+    let newList = this.started.filter((item:any) => item.id != id);
+    this.started = newList;
+    localStorage.setItem("started", JSON.stringify(this.started));
+    return this.started;
+    }
+  }
+  removeTaskFromCompleted(id:string){
+    let confirmation = confirm("Do you really want to delete this item ?");
+    if(!confirmation){
+      return
+    }else{
+    let newList = this.completed.filter((item:any) => item.id != id);
+    this.completed = newList;
+    localStorage.setItem("completed", JSON.stringify(this.completed));
+    return this.completed;
+    }
+  }
+
   resetTask(){
     let confirmation = confirm("Do you really want to clear this board?");
     if(!confirmation){

@@ -23,7 +23,7 @@ export class TaskManagerComponent implements OnInit {
     this.completed = this._taskSvc.getCompleted();
   }
 
-  onDrop(event: CdkDragDrop<any[]>){
+  onDrop(event: CdkDragDrop<any[]>){   
     console.log(event)
       if(event.previousContainer === event.container){
         moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -54,6 +54,26 @@ export class TaskManagerComponent implements OnInit {
     this.description.nativeElement.value = ""
     e.preventDefault();
   }
+
+  handleRemoveTodoItem(id:any){
+    console.log(id);
+    this._taskSvc.removeTaskFromTodo(id);
+    this.todos = this._taskSvc.getTodos();
+  }
+
+  handleRemoveStartedItem(id:any){
+    console.log(id);
+    this._taskSvc.removeTaskFromStarted(id);
+    this.started = this._taskSvc.getStarted();
+  }
+
+  handleRemoveCompletedItem(id:any){
+    console.log(id);
+    this._taskSvc.removeTaskFromCompleted(id);
+    this.completed = this._taskSvc.getCompleted();
+  }
+
+  
   handleReset(){
     this._taskSvc.resetTask();
     this.todos = this._taskSvc.getTodos();

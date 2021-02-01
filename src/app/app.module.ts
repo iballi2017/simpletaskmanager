@@ -12,7 +12,6 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
 /* Modules */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/modules/material/material.module';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -25,8 +24,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    DragDropModule
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

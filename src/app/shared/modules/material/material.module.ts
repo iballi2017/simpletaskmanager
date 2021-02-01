@@ -5,16 +5,18 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 
 @NgModule({
   declarations: [],
   imports: [
-    MatToolbarModule,MatListModule,MatCardModule,MatButtonModule,MatFormFieldModule,MatInputModule
+    MatToolbarModule,MatListModule,MatCardModule,MatButtonModule,MatFormFieldModule,MatInputModule,MatIconModule,DragDropModule
   ],
   exports: [
-    MatToolbarModule,MatListModule,MatCardModule,MatButtonModule,MatFormFieldModule,MatInputModule
+    MatToolbarModule,MatListModule,MatCardModule,MatButtonModule,MatFormFieldModule,MatInputModule,MatIconModule,DragDropModule
   ]
 })
 export class MaterialModule { }
