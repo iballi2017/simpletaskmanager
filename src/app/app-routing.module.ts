@@ -5,10 +5,10 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
 import { TaskManagerComponent } from './views/task-manager/task-manager.component';
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'task-manager'},
-  {path: 'home', component: HomeComponent},
-  {path: 'task-manager', component: TaskManagerComponent},
-  {path: '**', component: PageNotFoundComponent},
+  // {path: '', pathMatch: 'full', redirectTo: 'task-manager'},
+  // {path: 'home', component: HomeComponent},
+  // {path: 'task-manager', component: TaskManagerComponent},
+  // {path: '**', component: PageNotFoundComponent},
 ];
 
 @NgModule({

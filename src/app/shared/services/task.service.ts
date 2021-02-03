@@ -28,85 +28,85 @@ export class TaskService {
   completed: TaskPlan[] = []
   constructor() { }
 
-  getTodos(){
-    if(localStorage.getItem("todos")){
+  getTodos() {
+    if (localStorage.getItem("todos")) {
       this.todos = JSON.parse(localStorage.getItem("todos") || '{}');
       return this.todos;
-    }else{
+    } else {
       localStorage.setItem("todos", JSON.stringify(this.completed));
     }
     return this.todos
   }
-  getStarted(){
-    if(localStorage.getItem("started")){
+  getStarted() {
+    if (localStorage.getItem("started")) {
       this.started = JSON.parse(localStorage.getItem("started") || '{}');
       return this.started;
-    }else{
+    } else {
       localStorage.setItem("started", JSON.stringify(this.started));
     }
     return this.started
   }
-  getCompleted(){
-    if(localStorage.getItem("completed")){
+  getCompleted() {
+    if (localStorage.getItem("completed")) {
       this.completed = JSON.parse(localStorage.getItem("completed") || '{}');
       return this.completed;
-    }else{
+    } else {
       localStorage.setItem("completed", JSON.stringify(this.completed));
     }
     return this.completed
   }
 
-  saveProgress(){
+  saveProgress() {
     localStorage.setItem('todos', JSON.stringify(this.todos));
     localStorage.setItem('started', JSON.stringify(this.started));
     localStorage.setItem('completed', JSON.stringify(this.completed));
   }
 
-  addTask(task:TaskPlan){
-      let newList = this.todos.unshift(task);
-      localStorage.setItem("todos", JSON.stringify(this.todos));
-      return newList
-  }
-
-  removeTaskFromTodo(id:string){
-    let confirmation = confirm("Do you really want to delete this item ?");
-    if(!confirmation){
-      return
-    }else{
-    let newList = this.todos.filter((item:any) => item.id != id);
-    this.todos = newList;
+  addTask(task: TaskPlan) {
+    let newList = this.todos.unshift(task);
     localStorage.setItem("todos", JSON.stringify(this.todos));
-    return this.todos;
+    return newList
+  }
+
+  removeTaskFromTodo(id: string) {
+    let confirmation = confirm("Do you really want to delete this item ?");
+    if (!confirmation) {
+      return
+    } else {
+      let newList = this.todos.filter((item: any) => item.id != id);
+      this.todos = newList;
+      localStorage.setItem("todos", JSON.stringify(this.todos));
+      return this.todos;
     }
   }
-  removeTaskFromStarted(id:string){
+  // removeTaskFromStarted(id: string) {
+  //   let confirmation = confirm("Do you really want to delete this item ?");
+  //   if (!confirmation) {
+  //     return
+  //   } else {
+  //     let newList = this.started.filter((item: any) => item.id != id);
+  //     this.started = newList;
+  //     localStorage.setItem("started", JSON.stringify(this.started));
+  //     return this.started;
+  //   }
+  // }
+  removeTaskFromCompleted(id: string) {
     let confirmation = confirm("Do you really want to delete this item ?");
-    if(!confirmation){
+    if (!confirmation) {
       return
-    }else{
-    let newList = this.started.filter((item:any) => item.id != id);
-    this.started = newList;
-    localStorage.setItem("started", JSON.stringify(this.started));
-    return this.started;
-    }
-  }
-  removeTaskFromCompleted(id:string){
-    let confirmation = confirm("Do you really want to delete this item ?");
-    if(!confirmation){
-      return
-    }else{
-    let newList = this.completed.filter((item:any) => item.id != id);
-    this.completed = newList;
-    localStorage.setItem("completed", JSON.stringify(this.completed));
-    return this.completed;
+    } else {
+      let newList = this.completed.filter((item: any) => item.id != id);
+      this.completed = newList;
+      localStorage.setItem("completed", JSON.stringify(this.completed));
+      return this.completed;
     }
   }
 
-  resetTask(){
+  resetTask() {
     let confirmation = confirm("Do you really want to clear this board?");
-    if(!confirmation){
+    if (!confirmation) {
       return
-    }else{
+    } else {
       let newList = this.todos = this.started = this.completed = [];
       localStorage.setItem("todos", JSON.stringify(this.todos));
       localStorage.setItem("started", JSON.stringify(this.todos));
